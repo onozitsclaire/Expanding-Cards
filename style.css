@@ -1,17 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" />-->
-    <link rel="stylesheet" href="style.css">
-    <title>Project Starter</title>
-</head>
-<body>
-    <h1>Project Starter</h1>
-    <h2>Hello</h2>
-    <h2>Hello</h2>
-    <script src="script.js"></script>
-</body>
-</html>
+/* style.css */
+
+@import url("https://fonts.googleapis.com/css2?family=Muli&display=swap");
+
+* {
+  /* I didn't put a universal tag here (the aterisk), so it errored until I did */
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Muli", "sans-serif";
+  display: flex; /* used for flexbox */
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* vh stands for "viewpoint height" and 100 means 100% viewpoint height, which means it takes up the entire height of the browser */
+  overflow: hidden; /* scroll bars hidden */
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  width: 90vw; /* this is like viewpoint height, but for width, so this is 90% of the browsers width */
+}
+
+.panel {
+  background-size: auto 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 80vh; /* this is the height of the panels themselves */
+  border-radius: 50px; /* this creates the "rounded" effect */
+  color: white;
+  cursor: pointer;
+  flex: 0.5; /* these are how wide the panels are when they are closed, the 'active' or open panel will have a larger value */
+  margin: 10px; /* margin (distance) between each panel/space between them */
+  position: relative;
+  transition: flex 0.7s ease-in; /* this is the transition of the panels from closed to open, flexbox is what's controlling it, the time to open, and the effect used (ease-in) */
+}
+
+.panel h3 {
+  /* this is referring to the header code <h3> that you used in the HTML, so for all the titles of the panels */
+  font-size: 24px;
+  position: absolute;
+  bottom: 20px; /* this is the manipulation of where the text is going (basically that it's going to the bottom left, and no margin */
+  left: 20px;
+  margin: 0;
+  opacity: 0; /* we made them transparent/invisible when they are closed, the 'active' version will show */
+}
+
+.panel.active {
+  /* referring to the 'active' or open panel, flex is the size of the flexbox, which was .5 before */
+  flex: 5;
+}
+
+.panel.active h3 {
+  /* referring to the 'active' h3 text, we're adjusting this so it is opaque when open */
+  opacity: 1;
+}
+
+@media (max-width: 480px) {
+  /* this means that any styles you put in this section will only take effect if the screen is less than 480px wide */
+  .container {
+    width: 100vw;
+  }
+
+  .panel:nth-of-type(4),
+  .panel:nth-of-type(5) {
+    display: none;
+    /* this section is used in conjunction with the media section above. When the screen is >480px wide, two panels (4 and 5) will also disappear (display none) */
+  }
+}
